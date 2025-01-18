@@ -33,4 +33,4 @@ Endpoint | Method | Body | Response | status
 
 ## Explorando una API
 
-Descargamos el software: 
+Insomnia y Postman
