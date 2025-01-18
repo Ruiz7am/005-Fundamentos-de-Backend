@@ -17,3 +17,86 @@ Recordando que la "nube" es solo la computadora de alquien mas, tenemos estos "a
 - SaaS: Software as a Service.
 
 ![arquitecture](./assets/Screenshot%202025-01-17%20201718.png)
+
+## Cookies y sesiones
+
+Las cookies son fragmentos de código que nos ayudan a almacenar información en los navegadores. Por ejemplo, el idioma, mantener una sesión abierta aunque se cierre el navegador.
+
+En el caso concreto de la persistencia en los inicios de sesión, el cliente al hacer login en algun sitio que maneje cookies, mandara los datos como una petición, el servidor la recive la procesa y manda una cookie al navegador.
+
+Hay un problema con las cookies, esta tecnología funciona solo entre un navegador web (browser) y el servidor, no es posible aplicarla en plataformas moviles (smartphones), ya que estas estan construidads con una tecnología diferente.
+
+Para poder aplicar la misma funcionalidad en moviles, hay que utilizar JWT (JSON Web Tokens) y lo mejor de esta tecnología es que se puede implementar también en navegadores web.
+
+## Bases de Datos
+
+La desmenusamos de la siguiente manera. En el server tenemos:
+
+- Lógica de negocio
+- Reglas de negocio
+- Validación
+- Autorización
+- entre varias tareas más
+
+(El software)
+
+y físicamente tenemos:
+
+- CPU (Central Processing Unit)
+- RAM (Random Access Memory)
+- HDD (Hard Drive Disk) o SSD (Solid State Drive)
+
+Dentro del servidor tenemos los servicios de backend por su puesto, nuestra aplicación, pero también es posible tener servicios de bases de datos corriendo en paralelo en ese mismo servidor. En un mismo sistema podemos tener diferentes servicios de backend corriendo simultaneamente, por ejemplo, podemos tener un stack de backend con python y django, con php y laravel, con javascript y node.js, etc.
+
+Estas APIs por lo regular consumen mas cpu y ram, y los servicios de bases de datos son las que consumen más recursos de almacenamiento.
+
+Ok, hasta aquí todo bien, lo siguiente, conforme a lo que hemos estado estudiando, puesto que el backend necesita de la información de una base de datos para poder entregar la información requerida por nuestro frontend, necesitamos una forma de conectar estas dos, y esto se logra mediante los **Drivers**, cada base de datos tiene su propio driver en particular y pude estar adaptado para diferentes lenguajes. Es necesario este fragmento de código para poder enlazar desde el mísmo código con la base de datos.
+
+### Tipos de bases de datos
+
+Existen dos tipos de bases de datos:
+
+- Relacionales (SQL):
+  - MySQL
+  - PostgreSQL
+  - Oracle
+  - MariaDB.
+- No relacionales (NoSQL):
+  - MongoDB
+  - Apache Cassandra
+  - Couchbase.
+
+Las bases de datos relacionales tienen el lenguaje de consultas de bases de datos SQL (Structured Query Language) como lenguaje en común. Esto permite que los frameworks para backend  aprovechan esta caracteristica y nos ofrecen el paradigma de la OOP para resolver la conexión e interacción con la base de datos, esta solución es llamada ORM: Object-Relational Mapping. Frameworks tales com (laravel, django, typeorm).
+
+Backend developer no se encarga de la administración de bases de datos, de esto se encarga el DB Admin, el cual realiza backups, optimización, replicación, etc.
+
+## Escalabilidad Vertical y Horizontal
+
+Una vez que nuestra aplicación tiene éxito y la cantidad de usuario se comienza a incrementar, puede que nuestra plataforma no sea lo suficientemente capaz de cumplir con las exigencias de recuros y colapse, a menos que tengamos un plan de escalabilidad.
+
+Hay dos formas de escalar un proyecto, Vertical u Horizontal
+
+### Escalabilidad Vertical
+
+Escalar verticalmente se refiere a aumentar los recursos físicos del sistema (CPU, RAM, HDD), para evitar el colapso por la sobredemanda de peticiones, tan simple como eso, vas a tu proveedor de PaaS solicitas mas recursos y listo. Problema resuelto.
+
+Pero no todo son maravillas, hay ciertas desventajas en optar por escalar de esta manera, la primera es el coste, es muy caro este tipo de upgrade, la segunda que muchas de las veces no tienes opción de desescalar y la tercera que al escalar, sigue siendo un solo servidor, que si falla, dejaría a la aplicación totalmente colapsada.
+
+### Escalabilidad Horizontal
+
+Como ya nos imaginabamos esta es una opción más viable para poder escalar, ya que lo que hacemos no es incrementar los recursos en el mismo servidor si no _"clonarlo"_, es decir levantar otro servidor.
+
+Al configurar un segundo servidor, o incluso mas, totalmente identicos al principal, logramos cumplir las demandas del crecimiento y evitar la caida total de la aplicación en caso de fallos.
+
+> A un conjunto de servidores como los descritos se les conoce como Cluster
+
+Esta parte de la escalada permite tener a mas de un servidor trabajando en conjunto para satisfacer todas las peticiones, y lo logran gracias a un Load Balancer que ayuda a balancear la carga de peticiones entre todos los servidores del cluster. Es más barato y nos ayuda a proteger nuestra aplicación de una caida total.
+
+Desventajas:
+
+- Es mas complejo de configurar.
+- Si la base de datos esta en el mismo servidor cada servidor tendrá su base de datos, por lo que no habrá una sincronización de la base completa.
+
+#### Replicación
+
+Para el resolver el pro
