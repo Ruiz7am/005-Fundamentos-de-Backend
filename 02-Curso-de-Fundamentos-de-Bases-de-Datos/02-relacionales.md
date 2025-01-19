@@ -66,7 +66,7 @@ En las primeras bases de datos, no tenían una forma eficiente de traer y ordena
 > Edgar Codd, inventor de las RDB
 > Álgebra relacional
 
-## Abstrallendo entidades
+## Abstrayendo entidades
 
 Haremos nuestra abstracción de entidades de un manejador de blogposts:
 
