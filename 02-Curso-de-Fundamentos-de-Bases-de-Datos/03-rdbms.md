@@ -1,0 +1,1 @@
+# RDBMS (MySQL) o cómo hacer lo anterior de manera práctica

@@ -18,6 +18,7 @@ Recordando que la "nube" es solo la computadora de alquien mas, tenemos estos "a
 
 ![arquitecture](./assets/Screenshot%202025-01-17%20201718.png)
 
+
 ## Cookies y sesiones
 
 Las cookies son fragmentos de código que nos ayudan a almacenar información en los navegadores. Por ejemplo, el idioma, mantener una sesión abierta aunque se cierre el navegador.
@@ -69,34 +70,3 @@ Existen dos tipos de bases de datos:
 Las bases de datos relacionales tienen el lenguaje de consultas de bases de datos SQL (Structured Query Language) como lenguaje en común. Esto permite que los frameworks para backend  aprovechan esta caracteristica y nos ofrecen el paradigma de la OOP para resolver la conexión e interacción con la base de datos, esta solución es llamada ORM: Object-Relational Mapping. Frameworks tales com (laravel, django, typeorm).
 
 Backend developer no se encarga de la administración de bases de datos, de esto se encarga el DB Admin, el cual realiza backups, optimización, replicación, etc.
-
-## Escalabilidad Vertical y Horizontal
-
-Una vez que nuestra aplicación tiene éxito y la cantidad de usuario se comienza a incrementar, puede que nuestra plataforma no sea lo suficientemente capaz de cumplir con las exigencias de recuros y colapse, a menos que tengamos un plan de escalabilidad.
-
-Hay dos formas de escalar un proyecto, Vertical u Horizontal
-
-### Escalabilidad Vertical
-
-Escalar verticalmente se refiere a aumentar los recursos físicos del sistema (CPU, RAM, HDD), para evitar el colapso por la sobredemanda de peticiones, tan simple como eso, vas a tu proveedor de PaaS solicitas mas recursos y listo. Problema resuelto.
-
-Pero no todo son maravillas, hay ciertas desventajas en optar por escalar de esta manera, la primera es el coste, es muy caro este tipo de upgrade, la segunda que muchas de las veces no tienes opción de desescalar y la tercera que al escalar, sigue siendo un solo servidor, que si falla, dejaría a la aplicación totalmente colapsada.
-
-### Escalabilidad Horizontal
-
-Como ya nos imaginabamos esta es una opción más viable para poder escalar, ya que lo que hacemos no es incrementar los recursos en el mismo servidor si no _"clonarlo"_, es decir levantar otro servidor.
-
-Al configurar un segundo servidor, o incluso mas, totalmente identicos al principal, logramos cumplir las demandas del crecimiento y evitar la caida total de la aplicación en caso de fallos.
-
-> A un conjunto de servidores como los descritos se les conoce como Cluster
-
-Esta parte de la escalada permite tener a mas de un servidor trabajando en conjunto para satisfacer todas las peticiones, y lo logran gracias a un Load Balancer que ayuda a balancear la carga de peticiones entre todos los servidores del cluster. Es más barato y nos ayuda a proteger nuestra aplicación de una caida total.
-
-Desventajas:
-
-- Es mas complejo de configurar.
-- Si la base de datos esta en el mismo servidor cada servidor tendrá su base de datos, por lo que no habrá una sincronización de la base completa.
-
-#### Replicación
-
-Para el resolver el pro
