@@ -77,4 +77,10 @@ Haremos nuestra abstracción de entidades de un manejador de blogposts:
 
 ## Relaciones
 
+Las relaciones son las acciones que se raelizan en la vida real o digital y que ligan a las entidades entre sí.
+
+## Cardinalidad
+
+
+
 ## Diagrama Entidad-Relación
