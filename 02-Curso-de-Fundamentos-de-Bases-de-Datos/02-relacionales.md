@@ -114,13 +114,51 @@ En las relaciones también tenemos un concepto denominado cardinalidad, el cual 
 ### Tipo de datos
 
 Texto | Números | Fecha/Hora | Lógicos
-:---: | :---: | :---: |:---:
-CHAR(n) | INTEGER | DATE | BOOLEAN
-VARCHAR(n) | BIGINT | TIME | |
-TEXT | SMALLINT | TIME | |
-| | DECIMAL(n, s) | TIMESTAMP | |
-| | NUMERIC(n, s) | | |
+---------|----------|----------|-------
+ CHAR(n) | INTEGER | DATE | BOOLEAN
+ VARCHAR(n) | BIGINT | TIME
+ TEXT | SMALLINT | DATETIME
+ | | DECIMAL(n, s) | TIMESTAMP
+ | | NUMERIC(n, s)
+
+### Texto
 
 **CHAR**: Almacena cadenas de caracteres (Memoria reservada estaticamente).
 **VARCHAR**: Almacena cadenas de caracteres (Memoria reservada dinamicamente).
-**TEXT**:  largos.
+**TEXT**:  Cadenas de caracteres muy largas.
+
+### Números
+
+**INTEGER**: Número entero, no tiene fracción.
+**BIGINT**: Número muy grande.
+**SMALLINT**: Número menor a 99.
+**DECIMAL**: n y s representa: número entero y números decimales.
+**NUMERIC**: n y s representa: número entero y números decimales.
+
+### Fecha y Hora
+
+**DATE**: Fecha
+**TIME**: Hora
+**DATETIME**: Fecha y Hora, el rango admitido es de '01/01/1000 00:00:00' a '9999-12-31 23:59:59'.
+**TIMESTAMP**: Fecha y hora, tiene un rango de '1970-01-01 00:00:01' GMT a '01/09/2038 03:14:07' GMT.
+
+### Lógicos
+
+**BOOLEAN**: Tipo de dato binario, puede tener solo dos valores, 1 o 0, verdadero o falso.
+
+## Constrains
+
+Son restricciones o reglas que aplicamos a la base de datos para que la información que se ingresa sea conforme a los parámetros y lineamientos de la mísma.
+
+
+Constraint | Description
+---------|----------
+ NOT NULL | Se asegura que la columna no tenga valores nulos
+ UNIQUE | Se asegura que cada valor en la columna no se repita
+ PRIMARY KEY | Es una combinación de NOT NULL y UNIQUE
+ FOREIGN KEY | Identifica de manera única una tupla en otra tabla
+ CHECK | Se aseguraque el valor en la columna cumpla una condición dada
+ DEFAULT | Coloca un valor por defecto cuando no hay un valor especificado
+ INDEX | Se crea por columna para permitir búsquedas más rápidas
+
+# 
