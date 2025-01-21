@@ -77,10 +77,50 @@ Haremos nuestra abstracción de entidades de un manejador de blogposts:
 
 ## Relaciones
 
-Las relaciones son las acciones que se raelizan en la vida real o digital y que ligan a las entidades entre sí.
+Es la manera en la que comenzamos a ligar las entidades entre sí. Para enlazarlos usamos un rombo en el diagrama.
 
-## Cardinalidad
+![relaciones](./assets/relaciones.png)
 
+### Cardinalidad
 
+En las relaciones también tenemos un concepto denominado cardinalidad, el cual se refiere a cuantos de un lado pertenecen también del otro lado. Y hay de varios tipos:
+
+#### Cardinalidad 1 a 1 (1:1)
+
+![1a1](./assets/1a1.png)
+
+#### Cardinalidad 0 a 1 (0:1) o 1 a 1 opcional
+
+![0a1](./assets/0a1.png)
+
+#### Cardinalidad 1 a Muchos (1:N)
+
+![1aN](./assets/1aN.png)
+
+#### Cardinalidad 0 a Muchos (0:N) 0 1 a N opcional
+
+![0aN](./assets/0aN.png)
+
+#### Cardinalidad Muchos a Muchos (N:N)
+
+![NaN](./assets/NaN.png)
 
 ## Diagrama Entidad-Relación
+
+![diagrama-er](./assets/diagrama-er.png)
+
+## Diagrama Físico
+
+### Tipo de datos
+
+Texto | Números | Fecha/Hora | Lógicos
+:---: | :---: | :---: |:---:
+CHAR(n) | INTEGER | DATE | BOOLEAN
+VARCHAR(n) | BIGINT | TIME | |
+TEXT | SMALLINT | TIME | |
+| | DECIMAL(n, s) | TIMESTAMP | |
+| | NUMERIC(n, s) | | |
+
+**CHAR**: Almacena cadenas de caracteres (Memoria reservada estaticamente).
+**VARCHAR**: Almacena cadenas de caracteres (Memoria reservada dinamicamente).
+**TEXT**:  largos.
