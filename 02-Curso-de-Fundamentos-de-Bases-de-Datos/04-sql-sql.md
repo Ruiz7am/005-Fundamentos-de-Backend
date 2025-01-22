@@ -29,7 +29,7 @@ Presentación de la información de una manera coherente, que tienen capacidad d
 
 ### Create (Crear)
 
-Crear una base de datos:
+#### Crear una base de datos (Schema)
 
 ```sql
 CREATE DATABASE test_db;
@@ -42,6 +42,8 @@ CREATE SCHEMA 'platziblog' DEFAULT CHARACTER SET utf8;
 USE DATABASE platziblog;
 ```
 
+#### Crear una tabla
+
 ```sql
 CREATE TABLE people (
   person_id int,
@@ -52,6 +54,10 @@ CREATE TABLE people (
 );
 ```
 
+#### Crear una vista
+
+Las vistas toman datos de las bases de datos, les dan un formato persistente.
+
 ```sql
 CREATE VIEW v_brasil_customers AS
   SELECT customer_name,
@@ -60,7 +66,6 @@ contact_name
   WHERE country = "Brasil";
 ```
 
-Las vistas toman datos de las bases de datos, les dan un formato persistente.
 
 ### Alter (Editar/Modificar)
 
