@@ -153,12 +153,156 @@ Son restricciones o reglas que aplicamos a la base de datos para que la informac
 
 Constraint | Description
 ---------|----------
- NOT NULL | Se asegura que la columna no tenga valores nulos
- UNIQUE | Se asegura que cada valor en la columna no se repita
- PRIMARY KEY | Es una combinación de NOT NULL y UNIQUE
- FOREIGN KEY | Identifica de manera única una tupla en otra tabla
- CHECK | Se aseguraque el valor en la columna cumpla una condición dada
- DEFAULT | Coloca un valor por defecto cuando no hay un valor especificado
- INDEX | Se crea por columna para permitir búsquedas más rápidas
+ **NOT NULL** | Se asegura que la columna no tenga valores nulos
+ **UNIQUE** | Se asegura que cada valor en la columna no se repita
+ **PRIMARY KEY** | Es una combinación de NOT NULL y UNIQUE
+ **FOREIGN KEY** | Identifica de manera única una tupla en otra tabla
+ **CHECK** | Se aseguraque el valor en la columna cumpla una condición dada
+ **DEFAULT** | Coloca un valor por defecto cuando no hay un valor especificado
+ **INDEX** | Se crea por columna para permitir búsquedas más rápidas
 
-# 
+## Normalización
+
+Nos ayuda a dejar todo en una forma normal, esto en base a las 12 leyes o mandamientos de Codd, anteriormente visto.
+
+Llegar a normalizar una base de datos es algo comparado como a un _**Estado Zen**_, un estando en el que tu base de datos esta en un equilibrio y desprendida de redundancias.
+
+Pero ¿qué es normalización? lo veremos con el siguiente ejercicio:
+
+Tenemos una tabla que relaciona a alumnos con materias que cursan
+
+ALUMNO | NIVEL_CURSO | NOMBRE_CURSO | MATERIA_1 | MATERIA_2
+:---: | :---: | :---: | :---: | :---:
+Juanito | Maestría | Data Enginieering | MySQL | Python
+Pepito | Licenciatura | Programación | MySQL | Python
+
+La normalización se logra a partir de una serie de reglas o normas que se denominan Formas Normales.
+
+### Primera Forma Normal (1FN)
+
+#### Atributos Atómicos (Sin campos repetidos)
+
+En este caso la primera forma normal nos inidica que los atributos deben ser atómicos, es decir, que no deben de haber una redundancia en la representación que hacemos en la tabla, por lo cual nos quedaría de la siguiente forma:
+
+ALUMNO_ID | ALUMNO | NIVEL_CURSO | NOMBRE_CURSO | MATERIA
+:---: | :---: | :---: | :---: | :---:
+1 | Juanito | Maestría | Data Enginieering | MySQL
+1 | Juanito | Maestría | Data Enginieering | Python
+2 | Pepito | Licenciatura | Programación | MySQL
+2 | Pepito | Licenciatura | Programación | Python
+
+### Segunda Forma Normal (2FN)
+
+#### Debe cumplir la 1FN y cada campo de la tabla debe depender de una clave única
+
+En nuestro ejemplo vemos que el id del alumno se repite dos veces cada por cada uno de los alumnos que tenemos registrados que son juanito y pepito, por tal motivo tenedremos que separar el id y generar otra tabla:
+
+**Alumnos**:
+
+ALUMNO_ID | ALUMNO | NIVEL_CURSO | NOMBRE_CURSO
+:---: | :---: | :---: | :---:
+1 | Juanito | Maestría | Data Enginieering
+2 | Pepito | Licenciatura | Programación
+
+**Materias**:
+
+MATERIA_ID | ALUMNO_ID | MATERIA
+---------|----------|---------
+ 1 | 1 | MySQL
+ 2 | 1 | Python
+ 3 | 2 | MySQL
+ 4 | 2 | Python
+
+### Tercera Forma Normal (3FN)
+
+#### Debe cumplir la 1FN, 2FN y los campos que NO son clave NO deben tener dependencias
+
+**Alumnos**:
+
+ALUMNO_ID | ALUMNO | CURSO_ID
+:---: | :---: | :---:
+1 | Juanito | 1
+2 | Pepito | 2
+
+**Cursos**:
+
+CURSO_ID | NIVEL_CURSO | NOMBRE_CURSO
+:---: | :---: | :---:
+1 | Maestría | Data Enginieering
+2 | Licenciatura | Programación
+
+**Materias**:
+
+MATERIA_ID | ALUMNO_ID | MATERIA
+:---: | :---: | :---:
+1 | 1 | MySQL
+2 | 1 | Python
+3 | 2 | MySQL
+4 | 2 | Python
+
+### Cuarta Forma Normal (4FN)
+
+#### Debe cumplir la 1FN, 2FN, 3FN y los campos multivaluados se identifcan por una clave única.
+
+**Alumnos**:
+
+ALUMNO_ID | ALUMNO | CURSO_ID
+:---: | :---: | :---:
+1 | Juanito | 1
+2 | Pepito | 2
+
+**Cursos**:
+
+CURSO_ID | NIVEL_CURSO | NOMBRE_CURSO
+:---: | :---: | :---:
+1 | Maestría | Data Enginieering
+2 | Licenciatura | Programación
+
+**Materias**:
+
+MATERIA_ID | MATERIA
+:---: | :---:
+1 | MySQL
+2 | Python
+3 | MySQL
+4 | Python
+
+**Materias por Alumno**:
+
+MPA_ID | MATERIA_ID | ALUMNO_ID
+---------|----------|---------
+ 1 | 1 | 1
+ 2 | 2 | 1
+ 3 | 1 | 2
+ 4 | 2 | 2
+
+## Normalizando PlatziBlog
+
+### Usuarios  
+
+**id**: _INTEGER_ **PK**  <-- Primary key  
+**login**: _VARCHAR(30)_ **NN**  <-- Not null  
+**password**: _VARCHAR(32)_ **NN**  <-- Not null  
+**nickname**: _VARCHAR(40)_ **NN**  <-- Not null  
+**email**: _VARCHAR(40)_ **NN** **UNIQUE** <-- Not null y Único  
+
+### Posts
+
+**id**: _INTEGER_ **PK** <-- Primary key  
+**titulo**: _VARCHAR(150)_  
+**fecha_publicación**: _TIMESTAMP_  
+**contenido**: _TEXT_  
+**estatus**: _CHAR(8)_, _CHECK(IN('activo', 'inactivo'_))
+
+### Comentarios
+
+**id**: _INTEGER_ **PK**  
+**comentario**: _TEXT_
+
+### Categorias
+**id**: _INTEGER_  
+**categoria**: _VARCHAR(30)_ 
+
+### Etiquetas
+id: _INTEGER_ **PK**  
+nombre_etiqueta: _VARCHAR(30)_
