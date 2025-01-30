@@ -144,6 +144,6 @@ FROM usuarios
 
 ```sql
 SELECT *
-FROM posts;
-
+FROM posts
+WHERE id<50;
 ```
