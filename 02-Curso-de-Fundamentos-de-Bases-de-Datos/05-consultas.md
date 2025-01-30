@@ -142,8 +142,11 @@ FROM usuarios
 
 ## WHERE
 
+Where es la sentencia que nos ayuda a filtrar tuplas o registros
+
 ```sql
 SELECT *
 FROM posts
 WHERE id<50;
 ```
+
