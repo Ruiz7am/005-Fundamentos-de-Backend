@@ -142,11 +142,139 @@ FROM usuarios
 
 ## WHERE
 
-Where es la sentencia que nos ayuda a filtrar tuplas o registros
+Where es la sentencia que nos ayuda a filtrar tuplas o registros (rows)
 
+En el siguiente ejemplo incluirá del 49 hacia abajo
 ```sql
 SELECT *
 FROM posts
 WHERE id<50;
 ```
 
+En el siguiente ejemplo incluirá del 50 hacia abajo
+```sql
+SELECT *
+FROM posts
+WHERE id<=50;
+```
+
+En el siguiente ejemplo incluirá del 51 hacia arriba
+```sql
+SELECT *
+FROM posts
+WHERE id>50;
+```
+
+En el siguiente ejemplo incluirá del 50 hacia arriba
+```sql
+SELECT *
+FROM posts
+WHERE id>=50;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE estatus = 'activo';
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE estatus = 'inactivo';
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE estatus != 'inactivo';
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE id != 50;
+```
+
+Cuando no se conoce la cadena exacta:
+
+En medio
+```sql
+SELECT *
+FROM posts
+WHERE titulo LIKE %escandalo%;
+```
+
+Al principio
+```sql
+SELECT *
+FROM posts
+WHERE titulo LIKE escandalo%;
+```
+
+Al final
+```sql
+SELECT *
+FROM posts
+WHERE titulo LIKE %escandalo;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE fecha_publicacion > '2025-01-01';
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE fecha_publicacion BETWEEN '2023-01-01' AND '2025-12-31;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE id BETWEEN 50 AND 60;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE YEAR(fecha_publicacion) BETWEEN '2023' AND '2024';
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE MONTH(fecha_publicacion) = '04';
+```
+
+### WHERE con valores nulos y no nulos
+
+```sql
+SELECT *
+FROM posts
+WHERE usuario_id IS NULL;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE categoria_id IS NULL;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE usuario_id IS NOT NULL;
+```
+
+```sql
+SELECT *
+FROM posts
+WHERE ususario_id IS NOT NULL
+AND estatus = 'activo'
+AND id < 50
+AND categoria_id = 2
+AND YEAR(fecha_publicacion) = '2025';
+```
