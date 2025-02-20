@@ -44,7 +44,121 @@ PL/PgSQL
 - Extensibilidad
 - Internacionalización, busqueda de texto.
 
-## Interacción de postgres desde la consola
+## Interacción con postgres desde la consola
 
 ### Comandos _Backslash_
 
+Se utiliza el caracter _backslash_ `\` seguido de el/los caracter/es del comando
+
+- `\?`: Lista todos los comandos y una descripción breve.
+- `\l`: Lista las bases de datos.
+- `\c <database>`: Se conecta a la base de datos especificada.
+- `\dt`: Muestra las tablas de la base de datos a la que estamos conectados.
+- `\d <table>`: Muestra las columnas de la tabla especificada.
+- `\h`: Muestra los comandos de consulta.
+- `\g`: Ejecuta el ultimo comando ejecutado.
+- `\timing`: muestra el tiempo que tarda en ejecutarse una tarea.
+
+## Interacción con postgres desde la interfaz gráfica
+
+![psql-gui](./assets/Screenshot%202025-02-20%20134629.png)
+
+## Archivos de Configuración
+
+- postgresql.conf
+- pg_hba.conf
+- pg_ident.conf
+
+## Comandos más utilizados en PostgreSQL
+
+### Comandos de ayuda
+
+- `\?` Con el cual podemos ver la lista de todos los comandos disponibles en consola, comandos que empiezan con backslash ( \ )
+- `\h` Con este comando veremos la información de todas las consultas SQL disponibles en consola. Sirve también para buscar ayuda sobre una consulta específica, para buscar información sobre una consulta específica basta con escribir \h seguido del inicio de la consulta de la que se requiera ayuda, así: \h ALTER
+
+### Comandos de navegación y consulta de información
+
+- `\c` Saltar entre bases de datos
+- `\l` Listar base de datos disponibles
+- `\dt` Listar las tablas de la base de datos
+- `\d` <nombre_tabla> Describir una tabla
+- `\dn` Listar los esquemas de la base de datos actual
+- `\df` Listar las funciones disponibles de la base de datos actual
+- `\dv` Listar las vistas de la base de datos actual
+- `\du` Listar los usuarios y sus roles de la base de datos actual
+
+### Comandos de inspección y ejecución
+
+- `\g` Volver a ejecutar el comando ejecutando justo antes
+- `\s` Ver el historial de comandos ejecutados
+- `\s` <nombre_archivo> Si se quiere guardar la lista de comandos ejecutados en un archivo de texto plano
+- `\i` <nombre_archivo> Ejecutar los comandos desde un archivo
+- `\e` Permite abrir un editor de texto plano, escribir comandos y ejecutar en lote. \e abre el editor de texto, escribir allí todos los comandos, luego guardar los cambios y cerrar, al cerrar se ejecutarán todos los comandos guardados.
+- `\ef` Equivalente al comando anterior pero permite editar también funciones en PostgreSQL
+
+### Comandos para debug y optimización
+
+- `\timing` Activar / Desactivar el contador de tiempo por consulta
+
+### Comandos para cerrar la consola
+
+- `\q` Cerrar la consola
+
+## Ejecutando consultas en la base de datos usando la consola
+
+```sql
+CREATE DATABASE transporte;
+```
+
+```sh
+\c transporte
+```
+
+```sql
+CREATE TABLE tren(
+  id serial NOT NULL,
+  modelo character varying,
+  capacidad integer,
+  CONSTRAINT tren_pkey PRIMARY KEY (id)
+);
+```
+
+```sh
+\d tren
+```
+
+```sh
+\d tren_id_seq
+```
+
+```sql
+INSERT INTO tren( modelo, capacidad ) VALUES ('Volvo 1', 100);
+```
+
+```sql
+SELECT * FROM tren;
+```
+
+```sql
+UPDATE tren SET modelo = 'Honda 0726' WHERE id = 1;
+```
+
+```sql
+SELECT * FROM tren;
+```
+
+```sql
+DELETE FROM tren WHERE id = 1;
+```
+
+```sql
+SELECT * FROM tren;
+```
+
+```sh
+\timing
+```
+
+```sql
+SELECT MD5('Vamos a encriptar este texto')
+```
