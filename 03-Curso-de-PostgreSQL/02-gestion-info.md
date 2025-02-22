@@ -2,7 +2,11 @@
 
 ## Creación de tablas
 
+Las tablas son los elementos que contienen la información y la estructura de las bases de datos, a pesar de que tienen un funcionamiento complejo, las acciones que se pueden realizar sobre ella son muy sencillas:
 
+- **CREATE**: Crea una tabla.
+- **ALTER**: Modifica una tabla.
+- **DROP**: Borra una tabla.
 
 ## Particiones
 

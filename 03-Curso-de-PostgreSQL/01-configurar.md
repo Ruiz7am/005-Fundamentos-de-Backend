@@ -199,3 +199,31 @@ Hacemos un diagrama de como será nuestra base de datos, las tablas y las relaci
 ![diagrama-db](./assets/Screenshot%202025-02-21%20210759.png)
 
 ## Jerarquía de Bases de Datos
+
+- **Servidor de base de datos**: Computadora que tiene un motor de base de datos instalado y en ejecución.
+- **Motor de base de datos**: Software que provee un conjunto de servicios encargados de administrar una base de datos.
+- **Base de datos**: Grupo de datos que pertenecen a un mismo contexto.
+- **Esquema de base de datos en PostgreSQL**: Grupo de objetos de base de datos que guarda relación entre sí (tabla, funciones, relaciones, secuencias).
+- **Tablas de base de datos**: Estructura que organiza los datos en filas y columnas formando una matríz.
+
+PostgreSQL es un motor de base de datos.
+
+La estructura de la base de datos diseñada para el proyecto del reto corresponde a los siguientes elementos:
+
+Base de datos: _Transporte_  
+Esquema: _Public_
+
+El esquema público contiene las siguientes tablas:
+
+- Estación
+- Pasajero
+- Tren
+
+Y las tablas de relaciones entre cada uno de los elementos anteriores son:
+
+- Trayecto
+- Viaje
+
+El esquema relacional entre las tablas corresponde al siguiente diagrama:
+
+![diagrama](./assets/diagrama.webp)
