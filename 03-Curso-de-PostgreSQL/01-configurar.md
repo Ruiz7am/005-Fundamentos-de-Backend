@@ -162,3 +162,40 @@ SELECT * FROM tren;
 ```sql
 SELECT MD5('Vamos a encriptar este texto')
 ```
+
+## Presentación del proyecto
+
+_**Sistema de transporte masivo**_
+
+- Pasajero
+- Trayecto
+- Estación
+- Tren
+- Viaje
+
+## Tipos de datos
+
+Postgres, al igual que otros motores, soporte diferentes tipos de datos, estan los comunes, que podemos encontrar en cualquier lenguaje de programación:
+
+- Numéricos
+- Monetarios
+- Texto
+- Binarios
+- Fecha/Hora
+- Boolean
+
+Existen también otro tipo de datos que son propios de postrgres y que puede que no se encuentren en otras bases de datos:
+
+- Geométricos (utilizando _X_ y _Y_ nos permite calcular distancias y áreas)
+- Direcciones de red (direcciones ip, permite hacer cálculos de máscara de subred)
+- Textos tipo bit (permite hacer cálculos en otros sistemas, ej. hexadecimal o binario)
+- XML y JSON
+- Arreglos 
+
+## Diseñando nuestra base de datos: estructura de las tablas
+
+Hacemos un diagrama de como será nuestra base de datos, las tablas y las relaciones entre ellas.
+
+![diagrama-db](./assets/Screenshot%202025-02-21%20210759.png)
+
+## Jerarquía de Bases de Datos
