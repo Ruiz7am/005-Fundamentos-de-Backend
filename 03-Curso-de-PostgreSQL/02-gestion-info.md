@@ -15,6 +15,8 @@ Hay ocaciones en que las tablas se llenan demasiado de información, haciendo la
 - Separación física de datos
 - Misma estructura lógica
 
+Las particiones se pueden configurar en rangos, por ejemplo rangos de fechas, esto permite darle mas fluidez a las consultas de toda la tabla
+
 ## Creación de roles
 
 
